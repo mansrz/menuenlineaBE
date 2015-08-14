@@ -1,0 +1,18 @@
+{% spaceless %}
+{  "results":
+    [
+    {% for restdish in dishes %}
+        {
+            "id": "{{ restdish.id }}",
+            "name": "{{ restdish.name }}",
+            "price": "{{ restdish.price}}",
+            "restaurant": "{{ restdish.restaurant.name}}",
+            "votes": "{{ restdish.votes }}",
+            "nvotes": "{{ restdish.nvotes }}"
+
+            
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+{% endspaceless %}

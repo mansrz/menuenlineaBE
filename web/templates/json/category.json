@@ -1,0 +1,13 @@
+{% spaceless %}
+{  "results":
+    [
+    {% for category in categories %}
+        {
+            "id": "{{ category.id }}",
+            "name": "{{ category.name }}",
+            
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+{% endspaceless %}

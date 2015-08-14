@@ -1,0 +1,359 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>Event List - Bootsnipp.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
+    @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+    body {
+		padding: 60px 0px;
+		background-color: rgb(220, 220, 220);
+	}
+    
+    .event-list {
+		list-style: none;
+		font-family: 'Lato', sans-serif;
+		margin: 0px;
+		padding: 0px;
+	}
+	.event-list > li {
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0px 0px 5px rgb(51, 51, 51);
+		box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+		padding: 0px;
+		margin: 0px 0px 20px;
+	}
+	.event-list > li > time {
+		display: inline-block;
+		width: 100%;
+		color: rgb(255, 255, 255);
+		background-color: rgb(197, 44, 102);
+		padding: 5px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.event-list > li:nth-child(even) > time {
+		background-color: rgb(165, 82, 167);
+	}
+	.event-list > li > time > span {
+		display: none;
+	}
+	.event-list > li > time > .day {
+		display: block;
+		font-size: 56pt;
+		font-weight: 100;
+		line-height: 1;
+	}
+	.event-list > li time > .month {
+		display: block;
+		font-size: 12pt;
+    word-wrap: break-word;
+		font-weight: 900;
+		line-height: 1;
+	}
+	.event-list > li > img {
+		width: 100%;
+	}
+	.event-list > li > .info {
+		padding-top: 5px;
+		text-align: center;
+	}
+	.event-list > li > .info > .title {
+		font-size: 17pt;
+		font-weight: 700;
+		margin: 0px;
+	}
+	.event-list > li > .info > .desc {
+		font-size: 13pt;
+		font-weight: 300;
+		margin: 0px;
+	}
+	.event-list > li > .info > ul,
+	.event-list > li > .social > ul {
+		display: table;
+		list-style: none;
+		margin: 10px 0px 0px;
+		padding: 0px;
+		width: 100%;
+		text-align: center;
+	}
+	.event-list > li > .social > ul {
+		margin: 0px;
+	}
+	.event-list > li > .info > ul > li,
+	.event-list > li > .social > ul > li {
+		display: table-cell;
+		cursor: pointer;
+		color: rgb(30, 30, 30);
+		font-size: 11pt;
+		font-weight: 300;
+        padding: 3px 0px;
+	}
+    .event-list > li > .info > ul > li > a {
+		display: block;
+		width: 100%;
+		color: rgb(30, 30, 30);
+		text-decoration: none;
+	} 
+    .event-list > li > .social > ul > li {    
+        padding: 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        padding: 3px 0px;
+	} 
+	.event-list > li > .info > ul > li:hover,
+	.event-list > li > .social > ul > li:hover {
+		color: rgb(30, 30, 30);
+		background-color: rgb(200, 200, 200);
+	}
+	.facebook a,
+	.twitter a,
+	.google-plus a {
+		display: block;
+		width: 100%;
+		color: rgb(75, 110, 168) !important;
+	}
+	.twitter a {
+		color: rgb(79, 213, 248) !important;
+	}
+	.google-plus a {
+		color: rgb(221, 75, 57) !important;
+	}
+	.facebook:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(75, 110, 168) !important;
+	}
+	.twitter:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(79, 213, 248) !important;
+	}
+	.google-plus:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(221, 75, 57) !important;
+	}
+
+	@media (min-width: 768px) {
+		.event-list > li {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 120px;
+			padding: 0px;
+		}
+		.event-list > li > time,
+		.event-list > li > img  {
+			display: inline-block;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 120px;
+			float: left;
+		}
+		.event-list > li > .info {
+			background-color: rgb(245, 245, 245);
+			overflow: hidden;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 120px;
+			height: 120px;
+			padding: 0px;
+			margin: 0px;
+		}
+		.event-list > li > .info {
+			position: relative;
+			height: 120px;
+			text-align: left;
+			padding-right: 40px;
+		}	
+		.event-list > li > .info > .title, 
+		.event-list > li > .info > .desc {
+			padding: 0px 10px;
+		}
+		.event-list > li > .info > ul {
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+		}
+		.event-list > li > .social {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			display: block;
+			width: 40px;
+		}
+        .event-list > li > .social > ul {
+            border-left: 1px solid rgb(230, 230, 230);
+        }
+		.event-list > li > .social > ul > li {			
+			display: block;
+            padding: 0px;
+		}
+		.event-list > li > .social > ul > li > a {
+			display: block;
+			width: 40px;
+			padding: 10px 0px 9px;
+		}
+	}
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://t4t5.github.io/sweetalert/dist/sweetalert-dev.js"></script>
+
+   <link href="http://t4t5.github.io/sweetalert/dist/sweetalert.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container-fluid">
+		<div class="row-fluid">
+			<div class="[ col-xs-12-fluid col-sm-offset-2-fluid col-sm-8-fluid ]">
+			  {% for d in dishes %}          
+        <br/>
+        <ul class="event-list" data-dish="{{d.id}}" >
+          <li data-toggle="modal" data-target="#myModal"  data-id="{{d.id}}">
+            <time datetime="{{ d.id }}">
+              <span class="day"> {{d.votes}} </span>
+              <span class="month">{{d.name}} </span>
+						</time>
+            <img alt="Independence Day" src="/media/{{ d.image_dish}}" />
+						<div class="info">
+              <h2 class="title">{{d.name}}</h2>
+              <p class="desc">{{d.restaurant.name}}</p>
+              <p class="desc">${{d.price}}</p>
+            </div>
+						<div class="social"></div>
+					 </li>
+          </ul>
+          {% endfor %}
+
+			</div>
+		</div>
+	</div>
+  <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Ultimas Huecas</h4>
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-success" style="margin-left:30%;" data-dismiss="modal">Si he ido</button>
+          <br/> <br/>
+          <button type="button" class="btn btn-warning"  style="margin-left:30%;" data-dismiss="modal">No he ido</button>
+          <br/> <br/>
+          <button type="button" class="btn btn-danger"  style="margin-left:22%;"  data-dismiss="modal">Lo desconozco</button>
+
+        </div>
+        <div class="modal-footer">       
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="user" style="display:none;">
+    {{request.user}}
+  </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var chevronup = "glyphicon glyphicon-chevron-up";
+    var chevrondown = "glyphicon glyphicon-chevron-down"
+    $('button').click(function(){
+      var data = $(this).data('dish');
+      var ul = $('ul[data-dish="'+data+'"]');
+      var visible = ul.css('display');
+      var span = $('button[data-dish="'+data+'"] span');
+      span.removeClass();
+      if(visible == 'none'){
+        ul.css('display','block');
+        span.addClass(chevrondown);
+      }else{
+        ul.css('display','none');
+        span.addClass(chevronup);
+      }
+    });
+    var modal = $('#myModal');
+    var title = $('#myModalLabel');
+    var body = $('#myModal .modal-body');
+    var getCircles = function(data){
+      var circles = [];
+      for ( i = 1; i<6; i++){
+        var op = '<input type="radio" id="'+data+'" name="point'+data+'" value="'+i+'">'+i+'' ;
+        circles.push(op);
+      } 
+      return circles;
+    };
+
+    var getCategorys = function(){
+
+      $.ajax({
+      type: "GET",
+      url: "/Evaluacion/?format=json",
+      data: {},
+      success:  function( data ) {
+        var results = data;
+        for ( r=0; r<results.length; r++){
+          var data_ = results[r];
+          var circles = getCircles(data_.id);                                               
+          var options = '';
+          console.log(circles);
+          for (c=0;c< circles.length;c++){
+            options = options + circles[c];
+          }
+          console.log(options);
+          $(body).append('<div data-post="'+data_.id+'" ><p>'+data_.name +'</p>'+options);
+        }
+      }
+      });
+    };
+
+
+    $('li').click(function(){
+      var data = $(this).data('id');
+      console.log(data);
+      title.empty();
+      $.ajax({
+      type: "GET",
+      url:  "/RestaurantPlato/"+data+"?format=json",
+      data: {},
+      success: function( data ) {
+        title.append(data.name);
+        $('#save').data('id',data.id);
+      }
+      });
+    });
+
+/*
+    $('#save').click(function(){
+      var data = $(this).data('id');
+      var post_d = []
+      $('#myModal .modal-body div').each(function(){
+        var elemen = '#myModal .modal-body div p';
+        console.log($(elemen).html());
+      });
+    });
+*/
+
+    $('.btn').click(function(){
+      var data = $(this).data('id');
+      var post_d = [];
+      var user =$('#user').text();
+      swal({
+        type:"success",
+        title: "",
+        text: "Gracias por tu colaboracion",
+        timer: 2000,
+        showConfirmButton: false
+      });
+
+
+    $('#myModal').modal('hide');
+    });
+  });
+</script>
+</body>
+</html>

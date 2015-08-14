@@ -1,0 +1,22 @@
+{% spaceless %}
+{  "results":
+    [
+    {% for restdish in dishes %}
+        {
+            "category": "{{ restdish.0}}"
+            {% for dish in restdish.1 %}
+              {
+              "name": "{{ dish.0.name }}",
+              "price": "{{ dish.0.price}}",
+              "restaurant": "{{ dish.0.restaurant.name}}",
+              "votes": "{{ dish.1}}",
+              "nvotes": "{{ dish.0.nvotes }}"
+              }
+              {% if not forloop.last %},{% endif %}
+              {% endfor %}
+            
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+{% endspaceless %}
