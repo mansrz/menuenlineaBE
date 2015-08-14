@@ -5,7 +5,7 @@
 /media
 /env
 /static
-.deploy.sh
+deploy.sh
 backup-file.sql
 db.sqlite3
 users
