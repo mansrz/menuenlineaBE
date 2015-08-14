@@ -1,0 +1,13 @@
+*.pyc
+/huecapp/settings*.py
+/huecapp/wsgi*.py
+/carga
+/media
+/env
+/static
+.deploy.sh
+backup-file.sql
+db.sqlite3
+users
+*~
+.idea/*
