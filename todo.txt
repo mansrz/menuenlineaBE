@@ -1,0 +1,4 @@
+Security for app mobile:
+Read Oauth for django
+
+
