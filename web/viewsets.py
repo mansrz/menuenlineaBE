@@ -23,6 +23,10 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
+class EstudianteViewSet(viewsets.ModelViewSet):
+    serializer_class = EstudianteSerializer
+    queryset = Estudiante.objects.all()
+
 class CategoryCriteriaViewSet(viewsets.ModelViewSet):
     serializer_class = CategoryCriteriaSerializer
     queryset = CategoryCriteria.objects.all()

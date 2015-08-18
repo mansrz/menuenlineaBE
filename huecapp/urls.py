@@ -29,6 +29,7 @@ router.register(r'RestaurantPlato', RestaurantDishViewSet)
 router.register(r'Categorias', CategoryViewSet)
 router.register(r'CriterioCategoria', CategoryCriteriaViewSet)
 router.register(r'CriterioEvaluacion', EvaluationCriteriaViewSet)
+router.register(r'Estudiante', EstudianteViewSet)
 router.register(r'Evaluacion', EvaluationViewSet)
 router.register(r'GCMDevice',GCMDeviceViewSet)
 
