@@ -4,7 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+
+class Estudiante(models.Model):
+    user = models.ForeignKey(User)
+    matricule = models.CharField(max_length = 64, null=True)
+
 class Restaurant(models.Model):
+    user = models.ForeignKey(User)
     name = models.CharField(max_length = 64)
     place = models.CharField(max_length = 128)
     latitude = models.FloatField(null = True)
@@ -62,8 +68,6 @@ class RestaurantDish(models.Model):
     def __unicode__(self):
         return self.name+'-'+self.restaurant.name
 
-
-
 class Evaluation(Text):
     evaluations = models.ManyToManyField(RestaurantDish, through='EvaluationCriteria', through_fields=( 'evaluation', 'restaurantdish'))
 
@@ -77,7 +81,7 @@ class CategoryCriteria(models.Model):
 class EvaluationCriteria(models.Model):
     evaluation = models.ForeignKey(Evaluation, related_name = 'restaurantdishes')
     restaurantdish = models.ForeignKey(RestaurantDish, related_name = 'evaluations')
-    user = models.ForeignKey(User, related_name = 'evaluations')
+    user = models.ForeignKey(Estudiante, related_name = 'evaluations')
     points = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
 
 

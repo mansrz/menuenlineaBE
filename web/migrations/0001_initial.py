@@ -31,6 +31,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Estudiante',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('matricule', models.CharField(max_length=64, null=True)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Evaluation',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -58,6 +66,7 @@ class Migration(migrations.Migration):
                 ('longitude', models.FloatField(null=True)),
                 ('image_restaurant', models.ImageField(null=True, upload_to=b'restaurants/')),
                 ('description', models.TextField(max_length=512, null=True)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Restaurante',
@@ -82,7 +91,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='evaluationcriteria',
             name='user',
-            field=models.ForeignKey(related_name='evaluations', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(related_name='evaluations', to='web.Estudiante'),
         ),
         migrations.AddField(
             model_name='evaluation',
