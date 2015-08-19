@@ -6,6 +6,8 @@ from push_notifications.models import GCMDevice,APNSDevice
 
 from rest_framework import viewsets
 from serializers import *
+from suds.xsd.doctor import ImportDoctor, Import
+from suds.client import Client
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
@@ -214,11 +216,38 @@ def login(request):
         return HttpResponseBadRequest('Bad parameters')
 
     from django.contrib.auth import authenticate, login
+    auth = authenticate(username = user , password = password)
 
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
+    if auth is not None:
+        login(request, auth)
+        response_content = {
+                'id':user.id,
+                'username': user.username,
+                'email': user.email,
+                'firstname': user.first_name,
+                'lastname': user.last_name,
+            }
+        response =  HttpResponse(json.dumps(response_content))
+        response['Content-Type'] = 'application/json; charset=utf-8'
+        response['Cache-Control'] = 'no-cache'
+        return response
+
+    else:
+
+        url = 'http://ws.espol.edu.ec/saac/wsandroid.asmx?WSDL'
+        imp = Import('http://www.w3.org/2001/XMLSchema')
+        imp.filter.add('http://tempuri.org/')
+        doctor = ImportDoctor(imp)
+        client = Client(url, doctor=doctor)
+        auth = client.service.autenticacion(user,pwd)
+
+        if auth == True:
+            auth = User.objects.create_user(username=user, password=pwd)
+            auth.save()
+            auth = authenticate(username = user , password = pwd)
+            #auth = User.objects.filter(username = user)
+            login(request,auth)
+            auth_pk = auth.pk
             response_content = {
                 'id':user.id,
                 'username': user.username,
@@ -230,12 +259,12 @@ def login(request):
             response['Content-Type'] = 'application/json; charset=utf-8'
             response['Cache-Control'] = 'no-cache'
             return response
+
         else:
-            # Return a 'disabled account' error message
-            return HttpResponseBadRequest('Usuario ha sido supendido')
-    else:
-        # Return an 'invalid login' error message.
-        return HttpResponseBadRequest('Usuario o clave incorrecto')
+            #self.username = None
+            #self.password = None
+            return HttpResponseForbidden('Autenticacion Fallida')
+    return HttpResponseBadRequest('Usuario o clave incorrecto')
 
 
 from django.contrib.auth import logout
