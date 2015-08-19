@@ -5,10 +5,6 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-class Estudiante(models.Model):
-    user = models.ForeignKey(User)
-    matricule = models.CharField(max_length = 64, null=True)
-
 class Restaurant(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length = 64)
@@ -45,7 +41,7 @@ class RestaurantDish(models.Model):
     name = models.CharField(max_length = 128)
     price = models.DecimalField(max_digits = 10, decimal_places = 2)
     image_dish = models.ImageField(upload_to='restaurants/',null = True)
-
+    day = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(6)])
 
     def save(self, *args, **kwargs):
         for field in self._meta.fields:
@@ -81,7 +77,7 @@ class CategoryCriteria(models.Model):
 class EvaluationCriteria(models.Model):
     evaluation = models.ForeignKey(Evaluation, related_name = 'restaurantdishes')
     restaurantdish = models.ForeignKey(RestaurantDish, related_name = 'evaluations')
-    user = models.ForeignKey(Estudiante, related_name = 'evaluations')
+    user = models.ForeignKey(User, related_name = 'evaluations')
     points = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
 
 

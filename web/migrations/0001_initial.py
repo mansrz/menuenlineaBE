@@ -31,14 +31,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Estudiante',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('matricule', models.CharField(max_length=64, null=True)),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Evaluation',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -91,7 +83,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='evaluationcriteria',
             name='user',
-            field=models.ForeignKey(related_name='evaluations', to='web.Estudiante'),
+            field=models.ForeignKey(related_name='evaluations', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='evaluation',
