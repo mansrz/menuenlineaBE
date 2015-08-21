@@ -248,12 +248,15 @@ def login(request):
             #auth = User.objects.filter(username = user)
             login(request,auth)
             auth_pk = auth.pk
+            restaurant = Restaurant.objects.filter(user = request.user)
+            isRestaurant = True if len(restaurant)==0 else False
             response_content = {
                 'id':user.id,
                 'username': user.username,
                 'email': user.email,
                 'firstname': user.first_name,
                 'lastname': user.last_name,
+                'restaurant': isRestaurant
             }
             response =  HttpResponse(json.dumps(response_content))
             response['Content-Type'] = 'application/json; charset=utf-8'
@@ -266,6 +269,17 @@ def login(request):
             return HttpResponseForbidden('Autenticacion Fallida')
     return HttpResponseBadRequest('Usuario o clave incorrecto')
 
+
+def isRestaurant(request):
+    if request.method == 'GET':
+        user = request.user
+        print user
+        restaurant = Restaurant.objects.filter(user=user)
+        print restaurant
+        if len(restaurant) == 0:
+            return HttpResponseBadRequest()
+        else:
+            return HttpResponse()
 
 from django.contrib.auth import logout
 @never_cache

@@ -48,5 +48,6 @@ urlpatterns = [
     url(r'^logout/', 'web.views.logout'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^pushes/', 'web.views.push_notifications_view', name='push_notifications_view'),
+    url(r'^isRestaurant/', 'web.views.isRestaurant', name='isRestaurant'),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

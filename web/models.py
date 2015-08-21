@@ -41,7 +41,7 @@ class RestaurantDish(models.Model):
     name = models.CharField(max_length = 128)
     price = models.DecimalField(max_digits = 10, decimal_places = 2)
     image_dish = models.ImageField(upload_to='restaurants/',null = True)
-    day = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(6)])
+    day = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(6)],null=True)
 
     def save(self, *args, **kwargs):
         for field in self._meta.fields:

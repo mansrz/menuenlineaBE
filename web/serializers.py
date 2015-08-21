@@ -18,7 +18,7 @@ class RestaurantDishSerializer(serializers.ModelSerializer):
     votes = serializers.SerializerMethodField()
     class Meta:
         model = RestaurantDish
-        fields = ('id', 'restaurant', 'name', 'price', 'image_dish', 'votes')
+        fields = ('id', 'restaurant', 'name', 'price', 'image_dish', 'votes','day')
 
     def get_votes(self, obj):
         return str(obj.votes())
