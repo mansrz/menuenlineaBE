@@ -52,10 +52,3 @@ class EvaluationSerializer(serializers.ModelSerializer):
         model = Evaluation
         fields = ('id', 'name')
 
-class EstudianteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Estudiante
-        field = ('id','user','matricule')
-
-
-
